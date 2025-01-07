@@ -1,0 +1,26 @@
+﻿@page
+@model WebApp.Web.Pages.Products.IndexModel
+
+
+<table class="table table-active table-bordered table-hover table-responsive table-striped">
+  <tr>
+    <td>نام محصول</td>
+    <td>قیمت</td>
+    <td>موجودی</td>
+    <td></td>
+  </tr>
+
+  @foreach (var item in Model.Product)
+  {
+    <tr>
+      <td>@item.Name</td>
+      <td>@item.Price</td>
+      <td>@item.Amount</td>
+      <td>
+        <a asp-page="Edit" asp-route-ID="@item.Id" class="btn btn-info">ویرایش</a>
+        <a asp-page="Delete" asp-route-ID="@item.Id"  class="btn btn-info">حذف</a>
+      </td>
+    </tr>
+  }
+
+</table>
