@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option csharp_namespace = "WebApp.Grpc";
+
+package productGrpc;
+
+enum State
+{
+    OK = 0;
+    NotFound = 1;
+    AccessDenied = 2;
+    Error = 3;
+}
+
+
+service ProductServiceGRpc
+{
+	rpc Create(stream ProductGRequestDto) returns(stream ProductGDto);
+	rpc UpDate(ProductGRequestDto) returns(ProductGDto);
+	rpc Get(ProductGRequestDto) returns(ProductGDto);
+	rpc Delete(stream ProductGRequestDto) returns( ProductGDto);
+	rpc GetList(ProductGRequestDto) returns(stream ProductGDto);
+}
+
+message ProductGDto{
+	int32 id = 1;
+	string name = 2;
+	float price = 3;
+	float amount = 4;
+	State State = 5;
+	string ErrorMessage = 6;
+}
+
+message ProductGRequestDto
+{
+	int32 id = 1;
+	string name = 2;
+	float price = 3;
+	float amount = 4;
+}
